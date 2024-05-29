@@ -189,3 +189,88 @@ opt [icon: folder] {
 home > dir1 > dir2 > dir3 > dir4 > dir5 > dir6 > dir7 > dir8 > f1 > f2 > opt
 
 ```
+
+
+## P6: 
+
+
+```
+
+
+Engineer [icon: user]
+Terraform [icon: terraform]
+Customer [icon: user]
+Browser [icon: internet-explorer]
+
+
+AWS [icon: aws] {
+  WafACL [icon: aws-waf]
+  IGW [icon: aws-internet-gateway]
+  CloudFront [icon: aws-cloudfront]
+  Region [icon: aws-region] {
+  StateFile [icon: aws-s3]
+    VPC [icon: aws-vpc] {
+      
+
+
+      Pub-SG [icon: aws-security-group]
+      Prv-SG [icon: aws-security-group]
+
+      Internet-Facing [icon: aws-application-load-balancer]    
+      Internal [icon: aws-application-load-balancer]
+
+      WebASG [icon: aws-ec2-auto-scaling]
+      AppASG [icon: aws-ec2-auto-scaling]
+
+      RTPub [icon: aws-route-table]
+      RTPrv [icon: aws-route-table]
+
+      AZ1 [icon: aws-availability-zone] {
+        NATGW1 [icon: aws-nat-gateway]
+        Pub-Sub1 [icon: aws-public-subnet] {
+          EC2-1 [icon: aws-ec2]
+        }
+        Prv-Sub1 [icon: aws-private-subnet] {
+          EC2-2 [icon: aws-ec2]
+        }
+        Prv-Sub2 [icon: aws-private-subnet] {
+          DB-Primary [icon: aws-rds]
+        }
+      }
+      AZ2 [icon: aws-availability-zone] {
+        NATGW2 [icon: aws-nat-gateway]
+        Pub-Sub2 [icon: aws-public-subnet] {
+          EC2-3 [icon: aws-ec2]
+        }
+        Prv-Sub3 [icon: aws-private-subnet] {
+          EC2-4 [icon: aws-ec2]
+        }
+        Prv-Sub4 [icon: aws-private-subnet] {
+          DB-RO [icon: aws-rds]
+        }
+      }
+    }
+  }
+}
+
+
+Engineer > Terraform > AWS
+Customer <> Browser <> WafACL <> CloudFront <> IGW <> Internet-Facing <> WebASG <> Internal <> AppASG
+
+WebASG > EC2-1, EC2-3
+AppASG > EC2-2, EC2-4
+
+RTPub > Pub-Sub1, Pub-Sub2
+RTPrv > Prv-Sub1, Prv-Sub2, Prv-Sub3, Prv-Sub4
+
+DB-Primary > DB-RO
+
+Pub-SG > EC2-1, EC2-3
+Prv-SG > EC2-2, EC2-4, DB-Primary, DB-RO
+
+Pub-Sub1 > NATGW1 > Prv-Sub1 <> Prv-Sub2
+Pub-Sub2 > NATGW2 > Prv-Sub3 <> Prv-Sub4
+
+
+
+```
