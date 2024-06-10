@@ -274,3 +274,55 @@ Pub-Sub2 > NATGW2 > Prv-Sub3 <> Prv-Sub4
 
 
 ```
+
+
+
+## P7: 
+
+```
+
+Part 1:
+
+
+Engineer [icon: user]
+CLI [icon: aws-command-line-interface]
+Docker-image [icon: docker]
+LocalHost [icon: internet-explorer]
+
+
+
+Engineer > CLI: Connect
+CLI > Docker-image: Run
+Docker-image > LocalHost: Deploy website
+Engineer <> LocalHost: Connect
+
+
+Part 2:
+
+
+Engineer [icon: user]
+CLI [icon: aws-command-line-interface]
+Docker-image [icon: docker]
+User [icon: user]
+Internet [icon: internet-explorer]
+
+
+AWS [icon: aws] {
+  ECR [icon: aws-elastic-container-registry]
+  ECS [icon: aws-elastic-container-service]
+  ALB [icon: aws-application-load-balancer]
+  Domain-Name [icon: aws-route53]
+}
+
+
+
+Engineer > CLI: Connect
+CLI > AWS, Docker-image :Create
+Docker-image > ECR: Push
+ECR > ECS: Create
+ECS > ALB: Create Service
+ALB > Domain-Name: Attach
+User <> Internet: Connect 
+Internet <> Domain-Name
+
+```
