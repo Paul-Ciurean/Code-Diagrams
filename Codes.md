@@ -326,3 +326,35 @@ User <> Internet: Connect
 Internet <> Domain-Name
 
 ```
+
+## P8:
+
+```
+
+Engineer [icon: user]
+Terraform [icon: terraform]
+GitHub1 [icon: github]
+GitHub2 [icon: github]
+GitHub-Action [icon: github-actions]
+AWS-Infrastructure [icon: terraform] {
+  VPC [icon: aws-vpc]{
+    ECR [icon: aws-ecr] {
+      Docker-Image [icon: docker]
+    }
+    ECS [icon: aws-ecs] {
+      WordPress [icon: docker]
+    }
+    EFS [icon: aws-efs]
+    RDS [icon: aws-rds]
+  }  
+}
+
+
+Engineer > GitHub1, GitHub2
+GitHub2 > Terraform 
+GitHub1 > GitHub-Action > ECR
+Terraform > AWS-Infrastructure
+WordPress <> EFS, RDS
+Docker-Image > WordPress
+
+```
