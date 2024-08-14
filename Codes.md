@@ -358,3 +358,80 @@ WordPress <> EFS, RDS
 Docker-Image > WordPress
 
 ```
+
+
+## P9
+
+```
+
+Engineer [icon: user]
+Inventory Manager [icon: user]
+Supplier [icon: users]
+AWS [icon: aws] {
+  S3 [icon: aws-s3]
+  Lambda [icon: lambda]
+  DynamoDB [icon: aws-dynamodb]
+}
+
+
+Engineer > AWS
+Supplier > S3: Upload CSV
+S3 > Lambda: Trigger
+Lambda > DynamoDB: Update
+Inventory Manager > DynamoDB: Checks
+
+```
+
+## P10
+
+```
+
+// Define architecture
+Customers [icon: users]
+Cinema-Manager [icon: user]
+Engineer [icon: user]
+Resources [icon: terraform]
+Browser [icon: internet-explorer]
+
+AWS [icon: aws] {
+  IAM-Role-Upload [icon: aws-iam]
+  IAM-Role-Movies [icon: aws-iam]
+  Search-API [icon: aws-api-gateway]
+  Search-Lambda [icon: aws-lambda]
+  Upload-Lambda [icon: aws-lambda]
+  Update-Lambda [icon: aws-lambda]
+  SNS [icon: aws-sns]
+  DynamoDB [icon: aws-dynamodb]
+  R53 [icon: aws-route-53]
+  Certificate-Manager [icon: aws-certificate-manager]
+  CloudFront [icon: aws-cloudfront]
+  Website [icon: aws-s3]
+  Upload-Movies [icon: aws-s3]
+  Upload-API [icon: aws-api-gateway]
+}
+
+// Connections
+
+Engineer > Resources: Write
+Resources > AWS: Create
+
+Cinema-Manager > Upload-Movies: Upload CSV
+Upload-Movies > Update-Lambda: Trigger
+Update-Lambda <> IAM-Role-Upload: Assume
+Update-Lambda > DynamoDB: Update
+Update-Lambda > SNS: Trigger
+SNS > Cinema-Manager: Send Email
+
+Customers <> Browser
+Browser <> R53: Access
+R53 <> CloudFront: Route traffic
+CloudFront <> Certificate-Manager: SLL Certificate
+CloudFront <> Website: Serves
+Website <> Search-API: Invoke
+Website <> Upload-API: Invoke
+Search-API <> Search-Lambda: Trigger
+Upload-API <> Upload-Lambda: Trigger
+IAM-Role-Movies <> Search-Lambda, Upload-Lambda: Assume
+DynamoDB <> Search-Lambda, Upload-Lambda: Interact
+
+```
